@@ -1,0 +1,89 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "hk.gogovan.mvvm"
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField 'String', 'SERVER_URL', '"https://sfahawk.com/v1/"'
+        }
+        debug {
+            buildConfigField 'String', 'SERVER_URL', '"https://sfahawk.com/v1/"'
+        }
+    }
+    dataBinding {
+        enabled = true
+    }
+    kapt {
+        javacOptions {
+            // Increase the max count of errors from annotation processors.
+            // Default is 100.
+            option("-Xmaxerrs", 500)
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Kotlin JDK
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    // Kotlin Extension AndroidX
+    implementation 'androidx.core:core-ktx:1.1.0-alpha04'
+
+    // UI Layouts
+    implementation "androidx.appcompat:appcompat:1.0.2"
+    implementation "com.google.android.material:material:$androidx_ui_version"
+    implementation "androidx.legacy:legacy-support-v4:$androidx_ui_version"
+    implementation "androidx.recyclerview:recyclerview:$androidx_ui_version"
+
+    // Dagger 2 and Dagger 2 Android
+    implementation "com.google.dagger:dagger:$dagger_2_version"
+    implementation "com.google.dagger:dagger-android:$dagger_2_version"
+    implementation "com.google.dagger:dagger-android-support:$dagger_2_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_2_version"
+    kapt "com.google.dagger:dagger-android-processor:$dagger_2_version"
+
+    //RxJava & RxAndroid 2
+    implementation "io.reactivex.rxjava2:rxjava:2.2.5"
+    implementation "io.reactivex.rxjava2:rxandroid:2.1.0"
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:${retrofit_version}"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:${retrofit_version}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${okhttp3_version}"
+
+    // Tray(App-Preferences Multi-Threaded)
+    implementation 'net.grandcentrix.tray:tray:0.12.0'
+
+    // Timber Logging
+    implementation "com.jakewharton.timber:timber:4.7.1"
+
+    // ViewModel and LiveData
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
+
+    // JUnit
+    testImplementation 'junit:junit:4.12'
+
+    // Espresso UI Testing
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
+    androidTestImplementation 'androidx.test:rules:1.1.1'
+    androidTestImplementation 'androidx.test:runner:1.1.1'
+}
