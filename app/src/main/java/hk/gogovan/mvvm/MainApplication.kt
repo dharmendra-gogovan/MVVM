@@ -27,7 +27,9 @@ class MainApplication : DaggerApplication() {
    * Inject Dagger App Component after onCreate()
    */
   override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
-    val component = DaggerAppComponent.builder().application(this).build()
+    val component = DaggerAppComponent.builder()
+        .application(this)
+        .build()
     component.inject(this)
     return component
   }

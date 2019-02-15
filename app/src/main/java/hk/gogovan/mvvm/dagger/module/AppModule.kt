@@ -11,9 +11,9 @@ import javax.inject.Singleton
  * App Module to provide App-Level Dependencies
  */
 @Module(
-  includes = [
-    ViewModelModule::class
-  ]
+    includes = [
+      ViewModelModule::class
+    ]
 )
 class AppModule {
 

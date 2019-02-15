@@ -60,9 +60,9 @@ class NetworkModule {
 
       // Update the request with Bearer Token Header
       val updatedRequest = originalRequest.newBuilder()
-        .header("Authorization", "Bearer ${appPrefs.userToken}")
-        .method(originalRequest.method(), originalRequest.body())
-        .build()
+          .header("Authorization", "Bearer ${appPrefs.userToken}")
+          .method(originalRequest.method(), originalRequest.body())
+          .build()
 
       // Proceed request with updated Auth header
       chain.proceed(updatedRequest)
@@ -85,11 +85,12 @@ class NetworkModule {
     // API Base URL
     // Converter Factory
     // Retrofit Call to RxJava Adapter
-    return Retrofit.Builder().baseUrl(BuildConfig.SERVER_URL)
-      .addConverterFactory(GsonConverterFactory.create())
-      .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-      .client(httpClient)
-      .build()
+    return Retrofit.Builder()
+        .baseUrl(BuildConfig.SERVER_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+        .client(httpClient)
+        .build()
   }
 
   /**
