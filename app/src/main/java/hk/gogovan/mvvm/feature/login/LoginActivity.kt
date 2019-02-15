@@ -62,7 +62,7 @@ class LoginActivity : BaseActivity<LoginView, LoginViewModel, ActivityLoginBindi
 
   override fun onLoginSuccess(loginResponse: LoginResponse?) {
     hideLoading()
-    showSnackBar("Login Successful", true)
+    showSnackBar("Token: ${loginResponse?.token}", true)
   }
 
   override fun onLoginFailed() {

@@ -12,7 +12,7 @@ import retrofit2.http.POST
 interface ApiService {
 
   // Login Request
-  @POST("token")
+  @POST("login")
   fun postLogin(@Body loginRequest: LoginRequest): Single<LoginResponse>
 
 }
